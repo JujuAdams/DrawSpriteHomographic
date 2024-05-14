@@ -31,28 +31,22 @@ function DrawSpriteHomographic(_sprite, _image, _x1, _y1, _x2, _y2, _x3, _y3, _x
     })();
     
     static _vBuff = vertex_create_buffer();
-    
-    //Vector from P3 -> P1 = V31
+
+    //Use cross products to figure out necessary perspective correction
     var _x14 = _x1 - _x4;
     var _y14 = _y1 - _y4;
-    
-    //Vector from P2 -> P4 = V24
     var _x23 = _x2 - _x3;
     var _y23 = _y2 - _y3;
     
-    //Cross product of V24 x V13
     var _cross_23_14 = _x23*_y14 - _y23*_x14;
     if (_cross_23_14 != 0)
     {
-        //Vector from P3 -> P4
         var _x43 = _x3 - _x4;
         var _y43 = _y3 - _y4;
         
-        //Cross product of V24 x V43
         var _cross_23_43 = (_x23 * _y43 - _y23 * _x43) / _cross_23_14;
         if (_cross_23_43 != 0)
         {
-            //Cross product of V13 x V43
             var _cross_14_43 = (_x14 * _y43 - _y14 * _x43) / _cross_23_14;
             if (_cross_14_43 != 0)
             {
