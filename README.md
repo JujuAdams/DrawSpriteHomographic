@@ -92,8 +92,8 @@ void main()
     
     //...so we can pass the "z" value from the input position as the w-component
     //This tricks the GPU into doing perspective correction on texture coordinates for us
-    //We multiply up by the w-component to ensure the xy positions are correct after perspective correction
-    gl_Position = gm_Matrices[MATRIX_PROJECTION]*gm_Matrices[MATRIX_VIEW]*vec4(wsPos.xy*in_Position.z, wsPos.z, in_Position.z); 
+    //We multiply up by the w-component to ensure the xyz positions are orthographically unchanged after texture perspective correction
+    gl_Position = gm_Matrices[MATRIX_PROJECTION]*gm_Matrices[MATRIX_VIEW]*vec4(wsPos.xyz*in_Position.z, in_Position.z); 
     
     v_vColour   = in_Colour;
     v_vTexcoord = in_TextureCoord;
